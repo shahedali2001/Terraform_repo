@@ -1,0 +1,17 @@
+trigger: none
+
+pool: todo-app-infra
+
+jobs:
+  - job : terraformInit
+    displayName: terraform init
+    steps:
+    - task: TerraformTask@5
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/'
+        backendServiceArm: 'shahedado'
+        backendAzureRmStorageAccountName: 'libo4520'
+        backendAzureRmContainerName: 'tfscontainer'
+        backendAzureRmKey: 'prod.tfstate'
